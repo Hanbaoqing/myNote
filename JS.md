@@ -10,7 +10,7 @@
 
 
 
-###### 		对象与布尔值比较：
+###### 		对象与布尔值比较
 
 ​		比较时，对象会先转化为字符串，然后再转化为数字
 
@@ -20,7 +20,7 @@
 
 
 
-###### 对象与字符串比较：
+###### 对象与字符串比较
 
 ​		比较时，对象会先转化为字符串，然后进行比较
 
@@ -30,7 +30,7 @@
 
 
 
-###### 对象和数字比较：
+###### 对象和数字比较
 
 ​		比较时，对象会先转化为字符串，然后再转化为数字
 
@@ -49,7 +49,7 @@
 
 #### 2.函数
 
-###### 	创建方式：
+###### 	创建方式
 
 ```javascript
 		1. function 函数名() {} 			//命名函数
@@ -62,13 +62,13 @@
 
 
 
-###### 高阶函数：
+###### 高阶函数
 
 将函数作为参数或返回值（常见的应用场景——==回调函数==）
 
 
 
-###### 闭包：
+###### 闭包
 
 当一个作用域访问了另外一个作用域中的变量时，就会有闭包的产生，变量所在的函数称为闭包函数。
 
@@ -100,7 +100,7 @@ JS中当前函数的一个内置对象，存放了所有传递的过来的实参
 
 #### 3.对象
 
-###### 	创建方式：
+###### 	创建方式
 
 ```javascript
 		1. var obj = {}				//字面量
@@ -115,7 +115,7 @@ JS中当前函数的一个内置对象，存放了所有传递的过来的实参
 
 
 
-###### 	属性和方法：
+###### 	属性和方法
 
 调用属性和方法：obj.属性名（obj['属性名']）  /  obj.方法名
 
@@ -129,7 +129,7 @@ JS中当前函数的一个内置对象，存放了所有传递的过来的实参
 
 #### 4.ES6中类与对象
 
-###### 	定义：
+###### 	定义
 
 ```javascript
 		class 类名 {};			const *** = new 类名（）
@@ -150,7 +150,7 @@ JS中当前函数的一个内置对象，存放了所有传递的过来的实参
 
 
 
-###### 	继承（extends）：
+###### 	继承（extends）
 
 ```javascript
 		class Father {
@@ -182,3 +182,206 @@ JS中当前函数的一个内置对象，存放了所有传递的过来的实参
 
 
 子类会继承父类上的属性和方法，子类在调用方法时，会先查看自身是否拥有该方法，若没有则在父类上找；若子类拥有独有的属性，则需要写constructor，此时必须先使用super方法
+
+
+
+
+
+#### 5.ES6前的类
+
+###### 	构造函数
+
+```javascript
+		function Star(name,age) {
+            this.name = name;
+            this.age = age
+        }
+
+		const ldh = new Star("刘德华",18)
+```
+
+
+
+###### 	prototype
+
+js规定每一个构造函数都有一个prototype属性，该属性指向一个对象，这个对象的所有属性和方法都会被这个构造函数拥有
+
+
+
+###### 
+
+###### —proto—
+
+每个对象都会有一个	—proto— 属性，该属性指向构造函数的prototype，所以实例对象才可以使用构造函数的prototype上的属性和方法
+
+
+
+proto 为对象的查找机制提供了一条道路，不可以使用，只在内部指向prototype
+
+
+
+
+
+###### 	constructor属性
+
+proto和prototype中都有contractor属性，他指向构造函数本身，用于记录该对象引用了哪个构造函数
+
+
+
+![image-20210803001056511](C:\Users\老韩头\AppData\Roaming\Typora\typora-user-images\image-20210803001056511.png)
+
+
+
+###### 	
+
+
+
+###### 原型链
+
+
+
+![image-20210803001149679](C:\Users\老韩头\AppData\Roaming\Typora\typora-user-images\image-20210803001149679.png)
+
+
+
+#### 6.ES6前的继承
+
+方法：通过构造函数 + 原型   （借用call方法）
+
+```javascript
+		function.call(this,arg1,arg2,...) 	//this为当前函数调用时的this指向
+```
+
+
+
+1）借用构造函数继承父类属性
+
+```javascript
+		function Father(name,age) {
+            this.name = name;
+            this.age = age
+        }
+
+		function Son(name,age,sex) {
+            Father.call(this,name,age);		//此时this指向Son的实例
+            this.sex = sex
+        }
+```
+
+
+
+2）借用原型对象prototype继承方法
+
+```javascript
+		Son.prototype = new Father()
+		const son = new Son()
+        //Son的实例son proto实际指向了Father的实例
+```
+
+
+
+
+
+#### 7.Date对象
+
+```javascript
+		//Date:构造函数	
+
+		1.new Date()			//无参数返回当前时间
+		2.new Date(2021,09,12)	//有参数则根据参数返回时间
+
+		//时间戳	const date = new Date()
+		1.date.valueOf() | date.getTime
+		2.const date = +new Date()
+        3.Date.now()
+	
+```
+
+
+
+
+
+#### 8.数组
+
+###### 	检测是否为数组
+
+```
+		Array.isArray(参数)
+```
+
+
+
+###### 	添加删除元素
+
+```javascript
+		arr.push(arg1,arg2,...)		//	向数组末添加 1或多 个元素
+                 
+        arr.pop()					//删除数组最后一个
+
+		arr.unShift(arg1,arg2,...)	//	向数组开头添加 1或多 个元素
+                    
+        arr.shift()					//删除第一个
+```
+
+
+
+######  排序
+
+```javascript
+		arr.reverse()				//颠倒数组顺序
+
+		arr.sort(callback)			//升（降）序排列
+		
+		//注意：sort无参数时，当数组中有两位或以上会失效
+		//解决方案传入一个函数
+		function(a,b) {
+            return a - b	//升序
+            return b - a	//降序
+        }
+```
+
+
+
+###### 获取索引（查找元素）
+
+```javascript
+		arr.indexOf(searchValue,[index])			//返回指定元素的第一个索引 不存在则返回 -1 , index 规定开始检索的位置
+
+		arr.lastIndexOf(searchValue,[index])
+
+		arr.find( (value,index) => {})				//返回满足条件的第一个元素
+
+		arr.findIndex( (value,index,arr) => {} )	//返回满足条件的第一个元素的索引
+
+		arr.includes(参数)							//判断是否包含指定元素 返回true | false
+```
+
+
+
+
+
+###### 转化字符串
+
+```javascript
+		arr.toString()			  //返回一个字符串 每项用 ，隔开
+
+		arr.join('分隔符')			//返回一个字符串 用 指定分隔符 隔开
+```
+
+
+
+
+
+###### 遍历
+
+```javascript
+		arr.forEach( (value,index,arr) => {})
+
+		arr.filter( (value,index,arr) => {})		//该方法创建一个新数组 新数组是通过检查旧数组中符合的元素 用于筛选数组
+
+		arr.some( (value,index,arr) => {})			//用于检测是否有满足条件的元素 返回true | false
+
+		//区别 forEach和filter中的return 不会结束遍历，some中的会
+		map()    erery()
+```
+
