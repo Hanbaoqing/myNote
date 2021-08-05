@@ -101,6 +101,6 @@
 
 		//<Provider value={***} /> 	//包裹组件 value的值为传递的数据
 
-		//<Consumer>{(data) => {}}</Consumer>		//data为value的
+		//<Consumer>{(data) => {}}</Consumer>		//data为value的值
 ```
 
