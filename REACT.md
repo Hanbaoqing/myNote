@@ -104,3 +104,56 @@
 		//<Consumer>{(data) => {}}</Consumer>		//data为value的值
 ```
 
+
+
+
+
+
+
+#### 组件周期
+
+```react
+		//创建时
+		constructor	==>	render	==> componentDidMount
+		
+		constructor: 		创建组件时最先执行			用于初始化state 以及事件处理函数绑定this
+        render：			   每次组件渲染时都会触发		  渲染UI
+        componentDidMount:组件挂载后（完成渲染后）		  请求 DOM操纵
+
+		
+		//更新时
+		render	==>	componentDidUpdate
+		
+		componentDidUpdate:组件更新后
+		
+        //3种触发render重新渲染的情况
+        1.props发生变化时
+        2.调用setState时
+        3.forceUpdate() 强制更新
+
+
+		//卸载时
+		componentWillUnmount
+        组件卸载（从页面消失）		清理工作，比如清除定时器
+        
+        
+```
+
+
+
+
+
+#### setState
+
+```react
+		/setState更新数据是异步的/
+
+		//语法
+		1.setState({key:value})
+
+		2.setState( function(state,props){},function(){} )
+		参数1函数用于更新state
+        
+        参数2h
+```
+
